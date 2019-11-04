@@ -64,11 +64,18 @@ public class CachedUidGenerator extends DefaultUidGenerator implements Disposabl
     private RingBuffer ringBuffer;
     private BufferPaddingExecutor bufferPaddingExecutor;
 
+    public CachedUidGenerator() {
+
+    }
+    //TODO 改造点手动传入workerId
+    public CachedUidGenerator(long workerId) {
+        this.workerId = workerId;
+    }
+
     @Override
     public void afterPropertiesSet() throws Exception {
         // initialize workerId & bitsAllocator
         super.afterPropertiesSet();
-        
         // initialize RingBuffer & RingBufferPaddingExecutor
         this.initRingBuffer();
         LOGGER.info("Initialized RingBuffer successfully.");
